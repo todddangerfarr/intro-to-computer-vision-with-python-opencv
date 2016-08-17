@@ -4,17 +4,20 @@ This is a running repository of various tutorials and problem sets using the Ope
 
 ## Contents
 
-| Content       | Subject                                                   |
-|:-------------:|:---------------------------------------------------------:|
-| Tutorial 0    | Reading & Showing images using OpenCV and Matplotlib      |
-| Tutorial 1    | Image inspection methods                                  |
-| Tutorial 2    | Examining color planes & how OpenCV handles them          |
-| Tutorial 3    | Mixture Models                                            |
-| Tutorial 4    | Adding, Subtracting, Scaling and Blending Images          |
-| Tutorial 5    | Adding various types of noise to images using OpenCV      |
-| Tutorial 6    | Blurring images manually and with OpenCV                  |
-| Tutorial 7    | Translating Images using OpenCV                           |
-| Problem Set 0 | Problem Set Zero - Images as Functions                    |
+| Content       | Subject                                                        |
+|:-------------:|:--------------------------------------------------------------:|
+| Tutorial 0    | Reading & Showing images using OpenCV and Matplotlib           |
+| Tutorial 1    | Image inspection methods                                       |
+| Tutorial 2    | Examining color planes & how OpenCV handles them               |
+| Tutorial 3    | Mixture Models                                                 |
+| Tutorial 4    | Adding, Subtracting, Scaling and Blending Images               |
+| Tutorial 5    | Adding various types of noise to images using OpenCV           |
+| Tutorial 6    | Filtering: Blurring images manually and with OpenCV built-ins  |
+| 6.1           | Filtering: Apply a Median Filter in OpenCV (good for S&P noise)|
+| 6.2           | Filtering: Using Filters as Templates (aka Template Matching)  |
+| 6.3           | Filtering: The Different Border Types in OpenCV                |
+| Tutorial 7    | Translating Images using OpenCV                                |
+| Problem Set 0 | Problem Set Zero - Images as Functions                         |
 
 ## Requirements
 
