@@ -20,3 +20,8 @@ for sigma in range(5, 51, 5):
     cv2.imshow('Gaussian Noise, Sigma={}'.format(sigma), saturn_gauss)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+# You can add noise to individual channels of color images by declaring the
+# Gaussian mean and sigma as tuples of 3 values (B, G, R) for the blue, green
+# and red channels.  You also need to make sure you use the full image.shape, do
+# not slice it using [:2] 

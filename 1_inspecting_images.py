@@ -10,6 +10,8 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # read value from row 50 column 100 (zero indexed => -1)
+# REMEMBER:  Images are just functions or a matrix of Intensity Values, you can
+# splice them just as you would arrays or matricies 
 print 'The intensity value at row 50 & column 100 is: {}'.format(img[49, 99])
 print ''
 
