@@ -1,3 +1,8 @@
+###############################################################################
+#               FILTERING 2.0: Blurring Images with OpenCV                    #
+#                              by: Todd Farr                                  #
+###############################################################################
+
 # imports
 import numpy as np
 import cv2
@@ -12,7 +17,8 @@ cv2.imshow('Original Image', img)
 cv2.waitKey(0) # hold processes and wait for any key press
 cv2.destroyAllWindows() # destroy all open windows
 
-# Blurring with cv2.blur
+
+####################################################### BLURRING WITH cv2.blur()
 # the first argument is the img, the second argument is the size of a normalized
 # box filter (w, h) below is an example of a 3 x 3 box filter
 #
@@ -29,6 +35,7 @@ plt.title('Box Blur 5 x 5'), plt.xticks([]), plt.yticks([])
 plt.show()
 
 
+########################################################### MANUAL GAUSSIAN BLUR
 # Creating and inspecting Gaussian Kernels Manually
 def gaussian_kernel(k_size, sigma=5):
     ''' Returns a 2D Gaussian Kernel array. k_size needs to be an odd number. '''
@@ -51,7 +58,7 @@ for i, gauss in enumerate(gaussians):
 plt.show()
 
 
-# Blurring with Gaussian Blur
+###################################################### GAUSSIAN BLUR WITH OPENCV
 # cv2.GaussianBlur(src, ksize, sigmaX, sigmaY, borderType)
 # src is the original image
 # ksize must be a tuple of positive odd values (width, height)
@@ -64,25 +71,3 @@ gaussian_blur = cv2.GaussianBlur(img, (11, 11), 1)
 cv2.imshow('Gaussian Blur 11 x 11, Sigma = 1', gaussian_blur)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-
-
-# Removing Noise with Gaussian Blur
-# fist create a noisy image
-# create an empty np array full of zeros the same size as the image
-im = np.zeros(img.shape[:2], np.uint8) # do not use original image it overwrites it
-mean = 0 # the gaussian mean
-sigma_noise = 20 # the gaussian sigma
-gaussian = cv2.randn(im, mean, sigma_noise) # create the random distribution
-img_noisy = cv2.add(img, gaussian) # add the noise to the original image
-
-# clean up the noise
-gauss_noise_remv = cv2.GaussianBlur(img_noisy, (21, 21), 2)
-
-# plot original, noisy and gaussian noise removal together
-plt.subplot(131), plt.imshow(img, cmap='gray', interpolation='bicubic')
-plt.title('Original'), plt.xticks([]), plt.yticks([])
-plt.subplot(132), plt.imshow(img_noisy, cmap='gray', interpolation='bicubic')
-plt.title('Noisy'), plt.xticks([]), plt.yticks([])
-plt.subplot(133), plt.imshow(gauss_noise_remv, cmap='gray', interpolation='bicubic')
-plt.title('Gaussian Noise Removal'), plt.xticks([]), plt.yticks([])
-plt.show()
