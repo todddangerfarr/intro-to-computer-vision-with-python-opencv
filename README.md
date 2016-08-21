@@ -25,12 +25,20 @@ This is a running repository of various tutorials and problem sets using the Ope
 | 2.1           | Filtering: Apply a Median Filter in OpenCV (good for S&P noise)|
 | 2.2           | Filtering: Using Filters as Templates (aka Template Matching)  |
 |    ---        |                   ---                                          |
+| Chapter 3     | EDGE DETECTION                                                 |
+| 3.0           | Edge Detection: Image Gradients (Sobel, Laplacian)             |
+|    ---        |                   ---                                          |
+| Problem Sets  | PROBLEM SETS                                                   |
 | Problem Set 0 | Problem Set Zero - Images as Functions                         |
 
 ## Requirements
 
-Python 2.7
-Numpy + mkl 1.11.1
-OpenCV 3.0.0
-matplotlib 1.5.0
-scipy 0.18.0
+Python 2.7  
+cycler==0.10.0  
+matplotlib==1.5.1  
+numpy==1.11.1+mkl  
+pyparsing==2.1.8  
+python-dateutil==2.5.3  
+pytz==2016.6.1  
+scipy==0.18.0  
+six==1.10.0  
