@@ -60,13 +60,13 @@ plt.show()
 
 ###################################################### GAUSSIAN BLUR WITH OPENCV
 # cv2.GaussianBlur(src, ksize, sigmaX, sigmaY, borderType)
-# src is the original image
-# ksize must be a tuple of positive odd values (width, height)
-# sigmaX is the Gaussian deviation in the X diretion
-# sigmaY is the Gaussian deviation in the Y diretion, if sigmaY is zero,
+# src    --> is the original image
+# ksize  --> must be a tuple of positive odd values (width, height)
+# sigmaX --> is the Gaussian deviation in the X diretion
+# sigmaY --> is the Gaussian deviation in the Y diretion, if sigmaY is zero,
 #### it is set to be equal to sigmaX, if both sigmas are zeros, they are computed
 #### from ksize.width and ksize.height
-# BorderType pixel extrapolation method (see borderInterpolate() for details)
+# BorderType --> pixel extrapolation method (see borderInterpolate() for details)
 gaussian_blur = cv2.GaussianBlur(img, (11, 11), 1)
 cv2.imshow('Gaussian Blur 11 x 11, Sigma = 1', gaussian_blur)
 cv2.waitKey(0)

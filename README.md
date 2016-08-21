@@ -16,9 +16,9 @@ This is a running repository of various tutorials and problem sets using the Ope
 | 0.6           | Basics: Translating Images using OpenCV                        |
 |    ---        |                   ---                                          |
 | Chapter 1     | IMAGE NOISE                                                    |
-| 1.0           | Adding various types of noise to images using OpenCV           |
-| 1.1           | Removing Noise with Gaussian Blur                              |
-| 1.2           | Removing Salt & Pepper Noise with Median Blur                  |
+| 1.0           | Noise: Adding various types of noise to images using OpenCV    |
+| 1.1           | Noise: Removing Noise with Gaussian Blur                       |
+| 1.2           | Noise: Removing Salt & Pepper Noise with Median Blur           |
 |    ---        |                   ---                                          |
 | Chapter 2     | IMAGE FILTERS & FILTERING                                      |
 | 2.0           | Filtering: Blurring Images                                     |
@@ -27,6 +27,10 @@ This is a running repository of various tutorials and problem sets using the Ope
 |    ---        |                   ---                                          |
 | Chapter 3     | EDGE DETECTION                                                 |
 | 3.0           | Edge Detection: Image Gradients (Sobel, Laplacian)             |
+| 3.1           | Edge Detection: Canny Edge Detection with OpenCV               |
+|    ---        |                   ---                                          |
+| Chapter 4     | MODEL FITTING                                                  |
+| 4.0           | Model Fitting: Hough Transform (Lines)                         |
 |    ---        |                   ---                                          |
 | Problem Sets  | PROBLEM SETS                                                   |
 | Problem Set 0 | Problem Set Zero - Images as Functions                         |

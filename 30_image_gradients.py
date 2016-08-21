@@ -4,7 +4,7 @@
 #                                                                             #
 # OpenCV provides three types of gradient filters (often referred to as high- #
 # pass filters). These are Sobel, Scharr and Laplacian.  This .py file        #
-# explores their use and their differences.
+# explores their use and their differences.                                   #
 ###############################################################################
 
 # imports
@@ -98,7 +98,7 @@ plt.show()
 ############################################################ GRADIENT DIRECTIONS
 # read in image & convert to float normalized 0-1 similar to Matlab im2double()
 # This is a work in progress --> need to figure out imgradient equivalent in
-# OpenCV 
+# OpenCV
 img = cv2.imread('images/octogon.png')
 img_normal = img.astype('float') / 255
 
