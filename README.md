@@ -31,9 +31,12 @@ This is a running repository of various tutorials and problem sets using the Ope
 |    ---        |                   ---                                          |
 | Chapter 4     | MODEL FITTING                                                  |
 | 4.0           | Model Fitting: Hough Transform (Lines)                         |
+| 4.1           | Model Fitting: Hough Transform (Circles)                       |
 |    ---        |                   ---                                          |
 | Problem Sets  | PROBLEM SETS                                                   |
 | Problem Set 0 | Problem Set Zero - Images as Functions                         |
+| Problem Set 1 | Problem Set One - Edges and Lines                              |
+
 
 ## Requirements
 
