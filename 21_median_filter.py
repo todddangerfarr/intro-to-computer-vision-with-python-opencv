@@ -1,12 +1,12 @@
 ###############################################################################
-#     Tutorial 6.1 Applying a Median Filter to Blur and Smooth an Image       #
+#     FILTERING 2.1: Applying a Median Filter to Blur and Smooth an Image     #
 #                                By: Todd Farr                                #
 ###############################################################################
 
 # imports
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 
 # This type of filter is extremely effective in removing salt and pepper noise
 # see Chapter 1.2 for an example of this application

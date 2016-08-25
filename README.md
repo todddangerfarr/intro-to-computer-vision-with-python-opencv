@@ -24,14 +24,20 @@ This is a running repository of various tutorials and problem sets using the Ope
 | 2.0           | Filtering: Blurring Images                                     |
 | 2.1           | Filtering: Apply a Median Filter in OpenCV (good for S&P noise)|
 | 2.2           | Filtering: Using Filters as Templates (aka Template Matching)  |
+| 2.3           | Filtering: Aliasing in Images                                  |
 |    ---        |                   ---                                          |
 | Chapter 3     | EDGE DETECTION                                                 |
 | 3.0           | Edge Detection: Image Gradients (Sobel, Laplacian)             |
 | 3.1           | Edge Detection: Canny Edge Detection with OpenCV               |
 |    ---        |                   ---                                          |
 | Chapter 4     | MODEL FITTING                                                  |
-| 4.0           | Model Fitting: Hough Transform (Lines)                         |
+| 4.0           | Model Fitting: Hough Transform (Lines) - By Hand & OpenCV      |
 | 4.1           | Model Fitting: Hough Transform (Circles)                       |
+|    ---        |                   ---                                          |
+| Chapter 5     | PERSPECTIVE IMAGING                                            |
+| 5.0           | Perspective Imaging: Perspective Projection - Project a Point  |
+| 5.1           | Perspective Imaging: Depth Map from Stereo Images              |
+| 5.2           | Perspective Imaging: Stereo Correspondence - Find Best Match   |
 |    ---        |                   ---                                          |
 | Problem Sets  | PROBLEM SETS                                                   |
 | Problem Set 0 | Problem Set Zero - Images as Functions                         |

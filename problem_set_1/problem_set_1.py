@@ -13,17 +13,15 @@ import matplotlib.pyplot as plt
 ##################################################################### QUESTION 1
 # Read in the original image
 img = cv2.imread('input/ps1-input0.png')
-cv2.imshow('Original', img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
 
 # do some edge detection, I had to blur the image prior to cv2.Canny due to the
 # fact that it captures slight diagonals in the Hough Space if I didn't.
 img_grayscale = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-img_blur = cv2.GaussianBlur(img_grayscale, (5, 5), 0.75)
-img_edges = cv2.Canny(img_blur, 100, 200, apertureSize=7)
+img_blur = cv2.GaussianBlur(img_grayscale, (5, 5), 1)
+img_edges = cv2.Canny(img_blur, 100, 200, apertureSize=5)
 
-# show edges image
+# show original and edges image
+cv2.imshow('Original', img)
 cv2.imshow('Edges', img_edges)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
@@ -43,7 +41,7 @@ def hough_lines_acc(img, rho_resolution=1, theta_resolution=1):
     thetas = np.deg2rad(np.arange(-90, 90, theta_resolution))
 
     H = np.zeros((len(rhos), len(thetas)), dtype=np.uint64)
-    x_idxs, y_idxs = np.nonzero(img) # find all edge pixel indexes
+    y_idxs, x_idxs = np.nonzero(img) # find all edge (nonzero) pixel indexes
 
     for i in range(len(x_idxs)): # cycle through edge points
         x = x_idxs[i]
@@ -59,7 +57,7 @@ def hough_lines_acc(img, rho_resolution=1, theta_resolution=1):
 
 def plot_hough_acc(H, H1=None, plot_title='Hough Accumulator Plot'):
     # plot the Hough Line Accumulator
-    if H1 != None:
+    if (type(H1) == np.ndarray):
         fig = plt.figure(figsize=(8, 10))
         fig.canvas.set_window_title(plot_title)
         plt.subplot(121), plt.imshow(H, cmap='gray')
@@ -148,7 +146,7 @@ def hough_lines_draw(img, indicies, rhos, thetas):
 
 
 # build Hough Accumulator from img_edges
-H, rhos, thetas = hough_lines_acc(img_edges)
+H, rhos, thetas = hough_lines_acc(img_edges, theta_resolution=0.5)
 
 # plot the resulting accumulator
 plot_hough_acc(H)
@@ -169,12 +167,11 @@ cv2.destroyAllWindows()
 img_noisy = cv2.imread('input/ps1-input0-noise.png')
 img_noisy_grayscale = cv2.cvtColor(img_noisy, cv2.COLOR_RGB2GRAY)
 img_noisy_blur = cv2.GaussianBlur(img_noisy_grayscale, (5, 5), 6)
-cv2.imshow('Blurred', img_noisy_blur)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
 
-# edge detection
+# edge detection and show images
 img_noisy_edges = cv2.Canny(img_noisy_blur, 150, 200)
+cv2.imshow('Original', img_noisy)
+cv2.imshow('Blurred', img_noisy_blur)
 cv2.imshow('Edges', img_noisy_edges)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
@@ -205,7 +202,7 @@ img_pens = cv2.imread('input/ps1-input1.png')
 
 # convert to grayscale and find edges
 img_pens_grayscale = cv2.cvtColor(img_pens, cv2.COLOR_RGB2GRAY)
-img_pens_blur = cv2.GaussianBlur(img_pens_grayscale, (11, 11), 5)
+img_pens_blur = cv2.GaussianBlur(img_pens_grayscale, (5, 5), 2)
 img_pens_edges = cv2.Canny(img_pens_blur, 100, 200)
 cv2.imshow('Original Image', img_pens)
 cv2.imshow('Grayscale Blurred', img_pens_blur)
@@ -229,13 +226,36 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 
+##################################################################### QUESTION 5
+# This is still a work in progress 
+# finding Hough Circles
+def hough_circles_acc(img, radius):
+    ''' A function used to build a Hough Accumulator for finding circles in an
+        image. '''
+    y_idxs, x_idxs = np.nonzero(img)
+    H = np.zeros((len(x_idxs), len(y_idxs)), dtype=np.uint64)
+
+    # cycle through edge pixels
+    for i in range(len(x_idxs)):
+        x = x_idxs[i]
+        y = y_idxs[i]
+
+        # for each possible gradient direction
+        for theta in np.deg2rad(np.arange(-90, 90)):
+            a = int(x - radius*np.cos(theta))
+            b = int(y + radius*np.sin(theta))
+            H[a, b] += 1
+
+    return H
+
+
 ##################################################################### QUESTION 6
 # Find the lines along the pens in the ps1-input1.png image
 img_clutter = cv2.imread('input/ps1-input2.png')
 
 # convert to grayscale and find edges
 img_clutter_grayscale = cv2.cvtColor(img_clutter, cv2.COLOR_RGB2GRAY)
-img_clutter_blur = cv2.GaussianBlur(img_clutter_grayscale, (11, 11), 5)
+img_clutter_blur = cv2.GaussianBlur(img_clutter_grayscale, (7, 7), 1)
 img_clutter_edges = cv2.Canny(img_clutter_blur, 100, 200)
 cv2.imshow('Original Image', img_clutter)
 cv2.imshow('Grayscale Blurred', img_clutter_blur)
@@ -244,9 +264,9 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # build the Hough Accumulator
-H, rhos, thetas = hough_lines_acc(img_clutter_edges, theta_resolution=0.5)
+H, rhos, thetas = hough_lines_acc(img_clutter_edges, theta_resolution=0.75)
 plot_hough_acc(H)
-indicies, H, H1 = hough_peaks(H, 4, nhood_size=21)
+indicies, H, H1 = hough_peaks(H, 10, nhood_size=21)
 plot_hough_acc(H, H1, plot_title='Hough Peaks Highlighted')
 
 # draw lines
@@ -254,3 +274,6 @@ hough_lines_draw(img_clutter, indicies, rhos, thetas)
 cv2.imshow('Hough Lines', img_clutter)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+# save initial attempt to find only the pen edges
+cv2.imwrite('output/ps1-6-a-1.png', img_clutter)
