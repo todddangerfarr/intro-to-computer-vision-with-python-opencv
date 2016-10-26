@@ -14,6 +14,7 @@ This is a running repository of various tutorials and problem sets using the Ope
 | 0.4           | Basics: Adding, Subtracting, Scaling & Blending Images Together|
 | 0.5           | Basics: The Different Border Types in OpenCV                   |
 | 0.6           | Basics: Translating Images using OpenCV                        |
+| 0.7           | Basics: Drawing Functions in OpenCV                            |
 |    ---        |                   ---                                          |
 | Chapter 1     | IMAGE NOISE                                                    |
 | 1.0           | Noise: Adding various types of noise to images using OpenCV    |

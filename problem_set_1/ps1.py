@@ -178,8 +178,6 @@ cv2.destroyAllWindows()
 
 # build the Hough Line Accumulator
 H, rhos, thetas = hough_lines_acc(img_noisy_edges)
-plot_hough_acc(H) # plot the resulting Accumulator
-
 # find the indicies for the Hough Peaks
 indicies, H, H1 = hough_peaks(H, 8, nhood_size=20)
 # plot H (Hough highlighted) and H1 (Hough neighborhoods removed)
@@ -215,7 +213,6 @@ cv2.imwrite('output/ps1-4-a-1.png', img_pens_blur)
 
 # build the Hough Accumulator
 H, rhos, thetas = hough_lines_acc(img_pens_edges, theta_resolution=0.5)
-plot_hough_acc(H)
 indicies, H, H1 = hough_peaks(H, 4, nhood_size=11)
 plot_hough_acc(H, H1, plot_title='Hough Peaks Highlighted')
 
@@ -227,13 +224,14 @@ cv2.destroyAllWindows()
 
 
 ##################################################################### QUESTION 5
-# This is still a work in progress 
-# finding Hough Circles
+# This is still a work in progress
+# finding Hough Circles with known radii
 def hough_circles_acc(img, radius):
     ''' A function used to build a Hough Accumulator for finding circles in an
         image. '''
+    height, width = img.shape
     y_idxs, x_idxs = np.nonzero(img)
-    H = np.zeros((len(x_idxs), len(y_idxs)), dtype=np.uint64)
+    H = np.zeros((width, height), dtype=np.uint64)
 
     # cycle through edge pixels
     for i in range(len(x_idxs)):
@@ -241,12 +239,32 @@ def hough_circles_acc(img, radius):
         y = y_idxs[i]
 
         # for each possible gradient direction
-        for theta in np.deg2rad(np.arange(-90, 90)):
+        for theta in np.deg2rad(np.arange(0, 360)):
             a = int(x - radius*np.cos(theta))
             b = int(y + radius*np.sin(theta))
-            H[a, b] += 1
+            # make sure it stays within the image bounds
+            if (a < width and a > 0 and b < height and b > 0):
+                H[a, b] += 1
 
-    return H
+    return H, radius
+
+
+def hough_circles_draw(img, indicies, radius):
+    """ This function draws circles found using indicies from the Hough
+        Accumulator. """
+    for index in indicies:
+        # draw circle(img, center location, radius, color, thickness)
+        cv2.circle(img, index, radius, (0, 0, 255), 2)
+
+H, radius = hough_circles_acc(img_pens_edges, 20)
+indicies, H, H1 = hough_peaks(H, 10, nhood_size=20)
+plot_hough_acc(H, H1, plot_title='Hough Circles Peaks Highlighted')
+
+# draw circles
+hough_circles_draw(img_pens, indicies, radius)
+cv2.imshow('Hough Lines + Hough Circles', img_pens)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
 
 ##################################################################### QUESTION 6
@@ -265,7 +283,6 @@ cv2.destroyAllWindows()
 
 # build the Hough Accumulator
 H, rhos, thetas = hough_lines_acc(img_clutter_edges, theta_resolution=0.75)
-plot_hough_acc(H)
 indicies, H, H1 = hough_peaks(H, 10, nhood_size=21)
 plot_hough_acc(H, H1, plot_title='Hough Peaks Highlighted')
 
