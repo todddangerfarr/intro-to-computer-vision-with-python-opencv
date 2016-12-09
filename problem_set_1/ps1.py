@@ -3,10 +3,11 @@
 #                              By: Todd Farr                                  #
 ###############################################################################
 
+# WARNING: For some reason this code doesn't run on Mac OSX
 # imports
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
 
 # See the Problem set instructions in "problem-set-1-instructions.pdf"
 
